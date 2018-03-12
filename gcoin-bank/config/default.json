@@ -1,0 +1,18 @@
+{
+  "admin": {
+    "cardName": "admin@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "abcbank": {
+    "cardName": "abcbank@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "jklbank": {
+    "cardName": "jklbank@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "xyztrustbank": {
+    "cardName": "xyztrustbank@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  }
+}

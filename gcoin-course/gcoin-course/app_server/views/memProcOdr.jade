@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .row.page-header
+    .col-lg-12
+      h1 会員権売り注文の処理
+    .row
+      .col-xs-12.col-md-6
+        form.form-horizontal(action="/api/memOdrs", method="put", role="form")
+          .form-group
+            label.col-xs-10.col-sm-2.control-label(for="membership") 譲渡する会員権
+            .col-xs-12.col-sm-10
+              input#membership.form-control(name="membership") Membership
+          .form-group
+            label.col-xs-10.col-sm-2.control-label(for="sellingGolfer") 売り手ゴルファー
+            .col-xs-12.col-sm-2
+              input#sellingGolfer.from-control(name="sellingGolfer") Selling Golfer
+          .form-group
+            label.col-xs-10.col-sm-2.control-label(for="buyingGolfer") 買い手ゴルファー
+            .col-xs-12.col-sm-2
+              input#buyinggGolfer.form-controller(name="buyingGolfer") Buying Golfer
+          button.btn.btn-default.pull-right 譲渡承認
+      .col-xs-12.col-md-4

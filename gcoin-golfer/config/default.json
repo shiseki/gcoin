@@ -1,0 +1,18 @@
+{
+  "admin": {
+    "cardName": "admin@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "aoki": {
+    "cardName": "aoki@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "ozaki": {
+    "cardName": "ozaki@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "hori": {
+    "cardName": "hori@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  }
+}

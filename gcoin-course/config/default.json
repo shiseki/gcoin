@@ -1,0 +1,18 @@
+{
+  "admin": {
+    "cardName": "admin@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "blockchaincc": {
+    "cardName": "blockchaincc@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "dltgc": {
+    "cardName": "dltgc@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  },
+  "fabricclub": {
+    "cardName": "fabricclub@gcoin-network",
+    "businessNetworkIdentifier": "gcoin-network"
+  }
+}

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .row.page-header
+    .col-lg-12
+      h1 Process Gcoin Request
+  .row
+    .col-xs-12.col-md-12
+      form.form-horizontal(action="", method="post", role="form")
+        .form-group
+          label.col-xs-12.col-sm-12(for="gcoinReq").lef 申込内容
+          .col-xs-12.col-sm-12
+            ul#gcoinReq
+              li 申込番号： #{gcoinReq.gcoinRequestId}
+              li 依頼者： #{gcoinReq.requester}
+              li 金融機関： #{gcoinReq.bank}
+              li 売買： #{gcoinReq.requestType}
+              li Gコイン額： #{gcoinReq.amount}
+              li 売買申込受付日： #{gcoinReq.requestDate}
+        .form-group
+          .col-xs-12.col-sm-8
+            button.btn.btn-default.pull-right 承認
+    .col-xs-12.col-md-12

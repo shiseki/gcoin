@@ -1,0 +1,188 @@
+rule NetworkAdminCanDoAnythingOnUser {
+  description: "NetworkAdmin can do anything on user resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "**"
+  action: ALLOW
+}
+
+rule NetworkAdminCanDoAnythingOnSystem {
+  description: "NetworkAdmin can do anything on system resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+rule AnyCanReadNetwork {
+  description: "Anyone can read gcoin-network"
+  participant: "ANY"
+  operation: READ
+  resource: "org.hyperledger.composer.system.Network#gcoin-network@0.0.1"
+  action: ALLOW
+}
+
+rule AnyCanReadParticipantRegistry {
+  description: "Anyone can read ParticipantRegistry"
+  participant: "ANY"
+  operation: READ
+  resource: "org.hyperledger.composer.system.ParticipantRegistry"
+  action: ALLOW
+}
+
+rule AnyCanReadGolfer {
+  description: "Anyone can read Golfer"
+  participant: "ANY"
+  operation: READ
+  resource: "org.acme.gcoin.Golfer"
+  action: ALLOW
+}
+
+rule AnyCanReadBank {
+  description: "Anyone can read Bank"
+  participant: "ANY"
+  operation: READ
+  resource: "org.acme.gcoin.Bank"
+  action: ALLOW
+}
+
+rule AnyCanReadGolfCourse {
+  description: "Anyone can read GolfCourse"
+  participant: "ANY"
+  operation: READ
+  resource: "org.acme.gcoin.GolfCourse"
+  action: ALLOW
+}
+
+rule AnyCanReadAssetRegistry {
+  description: "Anyone can read AssetRegistry"
+  participant: "ANY"
+  operation: READ
+  resource: "org.hyperledger.composer.system.AssetRegistry"
+  action: ALLOW
+}
+
+rule AnyCanReadTransactionRegistry {
+  description: "Anyone can read TransactionRegistry"
+  participant: "ANY"
+  operation: READ
+  resource: "org.hyperledger.composer.system.TransactionRegistry"
+  action: ALLOW
+}
+
+rule AnyCanReateHistorianRecord {
+  description: "Anyone can create HistorianRecord"
+  participant: "ANY"
+  operation: CREATE
+  resource: "org.hyperledger.composer.system.HistorianRecord"
+  action: ALLOW
+}
+
+rule AnyCanReadOwnHistorianRecord {
+  description: "Anyone can read HistorianRecord referencing transactions they submitted"
+  participant(p): "ANY"
+  operation: READ
+  resource(r): "org.hyperledger.composer.system.HistorianRecord"
+  condition: (r.participantInvoking.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule AnyCanReadAndUpdateWallet {
+  description: "Anyone can transfer his Gcoin to other's wallet"
+  participant: "ANY"
+  operation: READ, UPDATE
+  resource: "org.acme.gcoin.Wallet"
+  action: ALLOW
+}
+
+rule GolferCanCreateAndReadGcoinRequest {
+  description: "Golfer can create and read GcoinRequest"
+  participant: "org.acme.gcoin.Golfer"
+  operation: CREATE, READ
+  resource: "org.acme.gcoin.GcoinRequest"
+  action: ALLOW
+}
+
+rule GolferCanCreateCreateGcoinRequest {
+  description: "Golfer can create CreateGcoinRequest transactions"
+  participant: "org.acme.gcoin.Golfer"
+  operation: CREATE
+  resource: "org.acme.gcoin.CreateGcoinRequest"
+  action: ALLOW
+}
+
+rule BankCanReadAndUpdateGcoinRequest {
+  description: "Bank can read and update GcoinRequest"
+  participant: "org.acme.gcoin.Bank"
+  operation: READ, UPDATE
+  resource: "org.acme.gcoin.GcoinRequest"
+  action: ALLOW
+}
+
+rule BankCanCreateProcessGcoinRequest {
+  description: "Bank can create ProcessGcoinRequest transactions"
+  participant: "org.acme.gcoin.Bank"
+  operation: CREATE
+  resource: "org.acme.gcoin.ProcessGcoinRequest"
+  action: ALLOW
+}
+
+rule GolferCanCreateReadAndUpdateSellMembershipOrder {
+  description: "Golfer can create, read and update SellMembershipOrder"
+  participant: "org.acme.gcoin.Golfer"
+  operation: CREATE, READ, UPDATE
+  resource: "org.acme.gcoin.SellMembershipOrder"
+  action: ALLOW
+}
+
+rule GolfCourseCanReadSellMembershipOrder {
+  description: "GolfCourse can read SellMembershipOrder"
+  participant: "org.acme.gcoin.GolfCourse"
+  operation: READ
+  resource: "org.acme.gcoin.SellMembershipOrder"
+  action: ALLOW
+}
+
+rule GolfCourseCanReadAndUpdateSellOwnMembershipOrder {
+  description: "GolfCourse can read and update own SellMembershipOrder"
+  participant(c): "org.acme.gcoin.GolfCourse"
+  operation: READ, UPDATE
+  resource(o): "org.acme.gcoin.SellMembershipOrder"
+  condition: (c.getIdentifier() == o.membership.golfCourse.getIdentifier())
+  action: ALLOW
+}
+
+rule GolfCourseCanDoAnyOnOwnMembership {
+  description: "GolfCourse can create, read, update and delete its Membership" 
+  participant(c): "org.acme.gcoin.GolfCourse"
+  operation: ALL
+  resource(m): "org.acme.gcoin.Membership"
+  condition: (c.getIdentifier() == m.golfCourse.getIdentifier())
+  action: ALLOW
+}
+
+rule GolferCanReadMembership {
+  description: "Golfer can read Membership"
+  participant: "org.acme.gcoin.Golfer"
+  operation: READ
+  resource: "org.acme.gcoin.Membership"
+  action: ALLOW
+}
+
+rule GolfCourseCanDoAnyOnHcCert {
+  description: "GolfCourse can create, read, update and delete handicap certificate for JGA"
+  participant: "org.acme.gcoin.GolfCourse"
+  operation: ALL
+  resource: "org.acme.gcoin.HcCert"
+  action: ALLOW
+}
+
+rule GolferCanReadHcCert {
+  description: "Golfer can read own handicap certificate"
+  participant(g): "org.acme.gcoin.Golfer"
+  operation: READ
+  resource(h): "org.acme.gcoin.HcCert"
+  condition: (g.getIdentifier() == h.golfer.getIdenfifier())
+  action: ALLOW
+}
+

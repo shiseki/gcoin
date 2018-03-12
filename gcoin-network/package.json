@@ -1,0 +1,22 @@
+{
+  "name": "gcoin-network",
+  "version": "0.0.1",
+  "description": "Sell and buy golf membership using gcoin",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Akimitsu Shiseki",
+  "email": "aki.shiseki@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "latest",
+    "composer-client": "latest",
+    "composer-common": "latest",
+    "composer-connector-embedded": "latest",
+    "chai": "latest",
+    "eslint": "latest",
+    "istanbul": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}

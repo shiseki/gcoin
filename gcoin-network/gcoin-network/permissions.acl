@@ -1,0 +1,99 @@
+rule NetworkAdminUser {
+  description: "Grant business network administrators full access to user resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "**"
+  action: ALLOW
+}
+
+rule NetworkAdminSystem {
+  description: "Grant businesss network administrators full access to system resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+rule TransferGcoinToAny {
+  description: "allow everyone to transfer his Gcoin to other's wallet"
+  participant: "ANY"
+  operation: READ, UPDATE
+  resource: "org.acme.gcoin.Wallet"
+  action: ALLOW
+}
+
+rule GolferGcoinRequest {
+  description: "allow golfer to create and read Gcoin request"
+  participant: "org.acme.gcoin.Golfer"
+  operation: CREATE, READ
+  resource: "org.acme.gcoin.GcoinRequest"
+  action: ALLOW
+}
+
+rule BankGcoinRequest {
+  description: "allow bank to read and update Gcoin request"
+  participant: "org.acme.gcoin.Bank"
+  operation: READ, UPDATE
+  resource: "org.acme.gcoin.GcoinRequest"
+  action: ALLOW
+}
+
+rule GolferSellMembershipOrder {
+  description: "allow golfer to create, read and update membership selling order"
+  participant: "org.acme.gcoin.Golfer"
+  operation: CREATE, READ, UPDATE
+  resource: "org.acme.gcoin.SellMembershipOrder"
+  action: ALLOW
+}
+
+rule CourseSellMembershipOrder {
+  description: "allow golf course to read membership selling order"
+  participant: "org.acme.gcoin.GolfCourse"
+  operation: READ
+  resource: "org.acme.gcoin.SellMembershipOrder"
+  action: ALLOW
+}
+
+rule CourseSellOwnMembershipOrder {
+  description: "allow golf course to read and update its membership selling order"
+  participant(c): "org.acme.gcoin.GolfCourse"
+  operation: READ, UPDATE
+  resource(o): "org.acme.gcoin.SellMembershipOrder"
+  condition: (c.getIdentifier() == o.membership.golfCourse.getIdentifier())
+  action: ALLOW
+}
+
+rule CourseMembership {
+  description: "allow golf course to create, read, update and delete its membership" 
+  participant(c): "org.acme.gcoin.GolfCourse"
+  operation: ALL
+  resource(m): "org.acme.gcoin.Membership"
+  condition: (c.getIdentifier() == m.golfCourse.getIdentifier())
+  action: ALLOW
+}
+
+rule GolferMembership {
+  description: "allow golfer to read membership"
+  participant: "org.acme.gcoin.Golfer"
+  operation: READ
+  resource: "org.acme.gcoin.Membership"
+  action: ALLOW
+}
+
+rule CourseHcCert {
+  description: "allow golf course to create, read, update and delete handicap certificate for JGA"
+  participant: "org.acme.gcoin.GolfCourse"
+  operation: ALL
+  resource: "org.acme.gcoin.HcCert"
+  action: ALLOW
+}
+
+rule GolferHcCert {
+  description: "allow golfer to read own handicap certificate"
+  participant(g): "org.acme.gcoin.Golfer"
+  operation: READ
+  resource(h): "org.acme.gcoin.HcCert"
+  condition: (g.getIdentifier() == h.golfer.getIdenfifier())
+  action: ALLOW
+}
+

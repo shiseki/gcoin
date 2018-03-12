@@ -1,0 +1,35 @@
+extends layout-gcoin
+
+block content
+  #banner.page-header
+    .row
+      .col-lg-12
+        h1= title
+  .row
+    .col-xs-12.col-sm-12
+      .row.list-group
+        table(border="1", style="border-collapse: collapse; width: 800px")
+          tr(style="background-color: #cccccc")
+            th 申込番号
+            th 依頼者
+            th 銀行
+            th 売買
+            th Gコイン
+            th 受付日
+            th 決済日
+            th 処理待
+          each req, i in gcoinReqs
+            tr
+              td= req.id
+              td= req.requester
+              td= req.bank
+              td= req.sellOrBuy
+              td= req.gcoinAmount
+              td= req.requestedDate
+              td= req.processedDate
+              - if(!req.processedDate){
+                td *
+              - } else {
+                td
+              - }
+              
