@@ -1,8 +1,0 @@
-{
-  "gcoin-golfer": {
-    "connectionProfile": "hlfv1",
-    "businessNetworkIdentifier": "gcoin-network",
-    "participantId": "PeerAdmin",
-    "participantPwd": "secret"
-  }
-}
