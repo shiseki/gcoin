@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 
 /* Check login function */
 var _checkLogin = function(req, res) {
-  if ((req.cookies.login == undefined) || (req.cookies.login != 'YES')) {
+  if ((req.cookies.golfer_login == undefined) || (req.cookies.golfer_login != 'YES')) {
     res.redirect('/login');
   }
 };

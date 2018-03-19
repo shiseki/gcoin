@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 
 /* Check login function */
 const _checkLogin = function(req, res) {
-  if ((req.cookies.login == undefined) || (req.cookies.login != 'YES')) {
+  if ((req.cookies.golfer_login == undefined) || (req.cookies.golfer_login != 'YES')) {
     res.redirect('/login');
   }
 };
@@ -64,7 +64,7 @@ const _renderGcoinListReqs = function(req, res, gcoinReqs) {
 module.exports.list_reqs = function(req, res) {
   _checkLogin(req, res);
   let requestOptions, path;
-  path = '/api/gcoinReqs?userName=' + req.cookies.userName;
+  path = '/api/gcoinReqs?userName=' + req.cookies.golfer_userName;
   console.log("path: " + path);
   requestOptions = {
     url : apiOptions.server + path,
@@ -88,7 +88,7 @@ module.exports.make_buyReq = function(req, res) {
 /* POST from 'make a gcoin buy request' page */
 module.exports.doMake_buyReq = function(req, res) {
 /* get user name and participant ID from application user ID */
-  userID1 = req.cookies.userID;    // application user ID used with login
+  userID1 = req.cookies.golfer_userID;    // application user ID used with login
   userID2 = req.body.id;           // user ID specified in the gcoin buy request form
   _getIdentities(req, res, userID1, function(identities) {
     identities1 = identities;
@@ -128,7 +128,7 @@ module.exports.make_sellReq = function(req, res) {
 /* POST from 'make a gcoin sell request' page */
 module.exports.doMake_sellReq = function(req, res) {
 /* get user name and participant ID from application user ID */
-  userID1 = req.cookies.userID;    // application user ID used with login
+  userID1 = req.cookies.golfer_userID;    // application user ID used with login
   userID2 = req.body.id;           // user ID specified in the gcoin sell request form
   _getIdentities(req, res, userID1, function(identities) {
     identities1 = identities;

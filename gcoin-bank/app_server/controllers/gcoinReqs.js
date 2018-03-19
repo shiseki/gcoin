@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 
 /* Check login function */
 const _checkLogin = function(req, res) {
-  if ((req.cookies.login == undefined) || (req.cookies.login != 'YES')) {
+  if ((req.cookies.bank_login == undefined) || (req.cookies.bank_login != 'YES')) {
     res.redirect('/login');
   }
 };
@@ -40,7 +40,7 @@ const _renderGcoinProcReq = function(req, res, gcoinReq) {
 module.exports.list_reqs = function(req, res) {
   _checkLogin(req, res);
   let requestOptions, path;
-  path = '/api/gcoinReqs?userName=' + req.cookies.userName;
+  path = '/api/gcoinReqs?userName=' + req.cookies.bank_userName;
   console.log("path: " + path);
   requestOptions = {
     url : apiOptions.server + path,
@@ -59,7 +59,7 @@ module.exports.list_reqs = function(req, res) {
 module.exports.proc_req = function(req, res){
   _checkLogin(req, res);
   let requestOptions, path;
-  path = '/api/gcoinReqs/' + req.query.gcoinRequestId + '?userName=' + req.cookies.userName;
+  path = '/api/gcoinReqs/' + req.query.gcoinRequestId + '?userName=' + req.cookies.bank_userName;
   console.log("path: " + path);
   requestOptions = {
     url : apiOptions.server + path,
@@ -85,7 +85,7 @@ module.exports.proc_req = function(req, res){
 module.exports.doProc_req = function(req, res) {
   _checkLogin(req, res);
   let requestOptions, path;
-  path = '/api/gcoinReqs/' + req.query.gcoinRequestId + '?userName=' + req.cookies.userName;
+  path = '/api/gcoinReqs/' + req.query.gcoinRequestId + '?userName=' + req.cookies.bank_userName;
   console.log("path: " + path);
   requestOptions = {
     url : apiOptions.server + path,

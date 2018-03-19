@@ -41,10 +41,10 @@ module.exports.doLogin = function(req, res){
           res.redirect('/login');
         } else if ((req.body.pw != '') && (req.body.pw == identity.password)) {
           console.log("identity.password: " + identity.password);
-          res.cookie('login', 'YES');
-          res.cookie('userID', req.body.id);
+          res.cookie('bank_login', 'YES');
+          res.cookie('bank_userID', req.body.id);
           console.log("identity.userName: " + identity.userName);
-          res.cookie('userName', identity.userName);      // userName is used to get cardName from config
+          res.cookie('bank_userName', identity.userName);      // userName is used to get cardName from config
           res.redirect('/about');
         } else {
           console.log('password is incorrect');
@@ -65,9 +65,9 @@ module.exports.about = function(req, res){
 /* GET 'logoff' page */
 module.exports.logoff = function(req, res){
   if (req.cookies.login != undefined) {
-    res.clearCookie('login');
-    res.clearCookie('userID');
-    res.clearCookie('userName');
+    res.clearCookie('bank_login');
+    res.clearCookie('bank_userID');
+    res.clearCookie('bank_userName');
   }
   res.render('logoff', { 'title': 'Logoff Gcoin for Banks' });
 };

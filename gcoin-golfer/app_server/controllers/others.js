@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 
 /* GET 'login' page */
 module.exports.login = function(req, res){
-  if ((req.cookies.login != undefined) && (req.cookies.login == 'YES')) {
+  if ((req.cookies.golfer_login != undefined) && (req.cookies.golfer_login == 'YES')) {
     console.log('already logged in');
     res.redirect('/about');
   } else {
@@ -41,10 +41,10 @@ module.exports.doLogin = function(req, res){
           res.redirect('/login');
         } else if ((req.body.pw != '') && (req.body.pw == identity.password)) {
           console.log("identity.password: " + identity.password);
-          res.cookie('login', 'YES');
-          res.cookie('userID', req.body.id);
+          res.cookie('golfer_login', 'YES');
+          res.cookie('golfer_userID', req.body.id);
           console.log("identity.userName: " + identity.userName);
-          res.cookie('userName', identity.userName);      // userName is used to get cardName from config
+          res.cookie('golfer_userName', identity.userName);      // userName is used to get cardName from config
           res.redirect('/about');
         } else {
           console.log('password is incorrect');
@@ -64,9 +64,9 @@ module.exports.about = function(req, res){
 
 /* GET 'logoff' page */
 module.exports.logoff = function(req, res){
-  if (req.cookies.login != undefined) {
-    res.clearCookie('login');
-    res.clearCookie('userID');
+  if (req.cookies.golfer_login != undefined) {
+    res.clearCookie('golfer_login');
+    res.clearCookie('golfer_userID');
   }
   res.render('logoff', { 'title': 'Logoff Gcoin for Golfers' });
 };
